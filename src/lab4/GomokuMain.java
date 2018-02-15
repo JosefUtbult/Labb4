@@ -1,10 +1,14 @@
-package main;
+package lab4;
 
-public class Main {
+import lab4.client.*;
+
+public class GomokuMain {
 
 	public static void main(String[] args) {
 
-		System.out.println("Hello world!");
+		System.out.println("Begin");
+		
+		GomokuClient client = new GomokuClient(1);
 		
 	}
 

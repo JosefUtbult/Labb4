@@ -1,4 +1,5 @@
 package lab4.gui;
+import lab4.*;
 
 import java.awt.Color;
 
@@ -42,7 +43,10 @@ public class GamePanel extends JPanel implements Observer{
 	 * @param y the y coordinates
 	 * @return an integer array containing the [x, y] grid position
 	 */
-	public int[] getGridPosition(int x, int y){}
+	public int[] getGridPosition(int x, int y){
+		
+		return new int[] {0};
+	}
 	
 	public void update(Observable arg0, Object arg1) {
 		this.repaint();
