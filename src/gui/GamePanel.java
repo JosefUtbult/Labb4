@@ -1,4 +1,4 @@
-package lab4.gui;
+package gui;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -8,7 +8,7 @@ import java.util.Observer;
 
 import javax.swing.JPanel;
 
-import lab4.data.GameGrid;
+import data.GameGrid;
 
 /**
  * A panel providing a graphical view of the game board
