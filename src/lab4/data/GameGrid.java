@@ -1,4 +1,4 @@
-package lab4.data;
+package data;
 
 import java.util.Observable;
 
