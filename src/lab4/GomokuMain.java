@@ -1,8 +1,8 @@
-package main;
+package lab4;
 
-public class Main {
+public class GomokuMain {
 	
-	public Main(String[] args) {
+	public static void GomokuMain(String[] args) {
 		
 	}
 	
