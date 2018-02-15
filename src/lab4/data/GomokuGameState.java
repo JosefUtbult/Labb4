@@ -1,7 +1,7 @@
 /*
  * Created on 2007 feb 8
  */
-package data;
+package lab4.data;
 
 import java.util.Observable;
 import java.util.Observer;
