@@ -1,7 +1,4 @@
-/*
- * Created on 2007 feb 8
- */
-package data;
+package lab4.data;
 
 import java.util.Observable;
 import java.util.Observer;
@@ -45,14 +42,18 @@ public class GomokuGameState extends Observable implements Observer{
 	 * 
 	 * @return the message string
 	 */
-	public String getMessageString(){}
+	public String getMessageString(){
+		return "";
+	}
 	
 	/**
 	 * Returns the game grid
 	 * 
 	 * @return the game grid
 	 */
-	public GameGrid getGameGrid(){}
+	public GameGrid getGameGrid(){
+		return this.gameGrid;
+	}
 
 	/**
 	 * This player makes a move at a specified location
@@ -60,7 +61,9 @@ public class GomokuGameState extends Observable implements Observer{
 	 * @param x the x coordinate
 	 * @param y the y coordinate
 	 */
-	public void move(int x, int y){}
+	public void move(int x, int y){
+		this.gameGrid.move(x, y, gameGrid.ME);
+	}
 	
 	/**
 	 * Starts a new game with the current client

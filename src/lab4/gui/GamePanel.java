@@ -1,14 +1,17 @@
 package lab4.gui;
-import lab4.*;
 
 import java.awt.Color;
 
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.Point;
+import java.awt.Toolkit;
 import java.util.Observable;
 import java.util.Observer;
 
+import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.text.Position;
 
 import lab4.data.GameGrid;
 
@@ -19,6 +22,7 @@ import lab4.data.GameGrid;
 public class GamePanel extends JPanel implements Observer{
 
 	private final int UNIT_SIZE = 20;
+	private int preferedUnitSize;
 	private GameGrid grid;
 	
 	/**
@@ -27,9 +31,17 @@ public class GamePanel extends JPanel implements Observer{
 	 * @param grid The grid that is to be displayed
 	 */
 	public GamePanel(GameGrid grid){
+		
+		/**
+		 * Makes a preferedUnitSize that is used instead of the UNIT_SIZE. It is sized after the current screen-size
+		 */
+		this.preferedUnitSize = (int) Toolkit.getDefaultToolkit().getScreenSize().getWidth() / 50;
+		/**
+		 * Building the grid
+		 */
 		this.grid = grid;
 		grid.addObserver(this);
-		Dimension d = new Dimension(grid.getSize()*UNIT_SIZE+1, grid.getSize()*UNIT_SIZE+1);
+		Dimension d = new Dimension(grid.getSize()*this.getUnitSize()+1, grid.getSize()*this.getUnitSize()+101);
 		this.setMinimumSize(d);
 		this.setPreferredSize(d);
 		this.setBackground(Color.WHITE);
@@ -55,6 +67,53 @@ public class GamePanel extends JPanel implements Observer{
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
 		
+		/*
+		 * Makes a delta point, that is relative to the current screenSize. This acts like a zero position for the grid
+		 */
+		
+		Point delta = new Point(this.getWidth() / 2 - (grid.getSize() * this.getUnitSize()) / 2, (this.getHeight() / 2 - (grid.getSize() * this.getUnitSize()) / 2) - 50);
+		
+		/*
+		 * Draws the grid
+		 */
+		for(int posY = 0; posY < grid.getSize(); posY++ ) {
+			
+			for(int posX = 0; posX < grid.getSize(); posX++ ){
+				
+				g.drawRect((int) (posX * this.getUnitSize() + delta.getX()), (int) (posY * this.getUnitSize() + delta.getY()), this.getUnitSize(), this.getUnitSize());
+				
+			}
+		}
+		
+		
+		
 	}
 	
+	public int getUnitSize() {
+		
+		return preferedUnitSize;
+		
+	}
+	
+	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
