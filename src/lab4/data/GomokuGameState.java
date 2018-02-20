@@ -1,9 +1,6 @@
-<<<<<<< HEAD
 /*
  * Created on 2007 feb 8
  */
-=======
->>>>>>> 37310be962d3af090a5ebfa16b44009437f00da0
 package lab4.data;
 
 import java.util.Observable;
@@ -53,26 +50,16 @@ public class GomokuGameState extends Observable implements Observer{
 	 * @return the message string
 	 */
 	public String getMessageString(){
-<<<<<<< HEAD
 		return message;
 	}
 
-=======
-		return "";
-	}
-	
->>>>>>> 37310be962d3af090a5ebfa16b44009437f00da0
 	/**
 	 * Returns the game grid
 	 * 
 	 * @return the game grid
 	 */
 	public GameGrid getGameGrid(){
-<<<<<<< HEAD
 		return gameGrid;
-=======
-		return this.gameGrid;
->>>>>>> 37310be962d3af090a5ebfa16b44009437f00da0
 	}
 
 	/**
@@ -82,11 +69,7 @@ public class GomokuGameState extends Observable implements Observer{
 	 * @param y the y coordinate
 	 */
 	public void move(int x, int y){
-<<<<<<< HEAD
 		
-=======
-		this.gameGrid.move(x, y, gameGrid.ME);
->>>>>>> 37310be962d3af090a5ebfa16b44009437f00da0
 	}
 	
 	/**
