@@ -1,6 +1,10 @@
+/*
+ * Created on 2007 feb 8
+ */
 package lab4.data;
 
 import java.util.Observable;
+import lab4.data.*;
 import java.util.Observer;
 
 import lab4.client.GomokuClient;
@@ -17,6 +21,9 @@ public class GomokuGameState extends Observable implements Observer{
 	
     //Possible game states
 	private final int NOT_STARTED = 0;
+	private final int MY_TURN = 1;
+	private final int OTHER_TURN = 2;
+	private final int FINISHED = 3;
 	private int currentState;
 	
 	private GomokuClient client;
@@ -43,16 +50,16 @@ public class GomokuGameState extends Observable implements Observer{
 	 * @return the message string
 	 */
 	public String getMessageString(){
-		return "";
+		return message;
 	}
-	
+
 	/**
 	 * Returns the game grid
 	 * 
 	 * @return the game grid
 	 */
 	public GameGrid getGameGrid(){
-		return this.gameGrid;
+		return gameGrid;
 	}
 
 	/**
@@ -62,30 +69,56 @@ public class GomokuGameState extends Observable implements Observer{
 	 * @param y the y coordinate
 	 */
 	public void move(int x, int y){
-		this.gameGrid.move(x, y, gameGrid.ME);
+		
 	}
 	
 	/**
 	 * Starts a new game with the current client
 	 */
-	public void newGame(){}
+	public void newGame(){
+		GameGrid.clearGrid();
+		message = "A new game has been started by you";
+		currentState = OTHER_TURN;
+		setChanged();
+		notifyObservers();		
+	}
 	
 	/**
 	 * Other player has requested a new game, so the 
 	 * game state is changed accordingly
 	 */
-	public void receivedNewGame(){}
+	public void receivedNewGame(){
+		GameGrid.clearGrid();
+		message = "A new game has been started by the other player";
+		currentState = MY_TURN;
+		setChanged();
+		notifyObservers();
+	}
 	
 	/**
 	 * The connection to the other player is lost, 
 	 * so the game is interrupted
 	 */
-	public void otherGuyLeft(){}
+	public void otherGuyLeft(){
+		GameGrid.clearGrid();
+		message = "The other player disconnected";
+		currentState = NOT_STARTED;
+		setChanged();
+		notifyObservers();
+	}
+	
 	
 	/**
 	 * The player disconnects from the client
 	 */
-	public void disconnect(){}
+	public void disconnect(){
+		GameGrid.clearGrid(); //Clearing the grid
+		message = "You are now getting disconnected";
+		currentState = NOT_STARTED;
+		client.disconnect(); //calls disconnect method in client
+		setChanged();
+		notifyObservers();
+	}
 	
 	/**
 	 * The player receives a move from the other player
@@ -93,7 +126,11 @@ public class GomokuGameState extends Observable implements Observer{
 	 * @param x The x coordinate of the move
 	 * @param y The y coordinate of the move
 	 */
-	public void receivedMove(int x, int y){}
+	public void receivedMove(int x, int y){
+		if(GameGrid.isWinner()) {
+			
+		}
+	}
 	
 	public void update(Observable o, Object arg) {
 		
