@@ -17,15 +17,18 @@ public class GameGrid extends Observable{
 	public static int ME = 1;
 	public static int OTHER = 2;
 	private static int INROW = 5;
+	private boolean humanize;
 	
 	/**
 	 * Constructor
 	 * 
 	 * @param size The width/height of the game grid
 	 */
-	public GameGrid(int size){
+	public GameGrid(int size, boolean humanize){
 		
 		this.size = size;
+		this.humanize = humanize;
+		System.out.format("Seting humanize to: %b\n", this.humanize);
 		
 		/*
 		 * Inits the gridMatrix and sets it to NONE
@@ -174,8 +177,9 @@ public class GameGrid extends Observable{
 		return true;
 	}
 	
-	
-	
+	public boolean getHumanize() {
+		return this.humanize;
+	}
 	
 	
 	
