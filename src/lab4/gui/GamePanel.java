@@ -108,6 +108,9 @@ public class GamePanel extends JPanel implements Observer{
 				
 				g.drawRect((int) (posX * this.getUnitSize() + delta.getX()), (int) (posY * this.getUnitSize() + delta.getY()), this.getUnitSize(), this.getUnitSize());
 				
+				/*
+				 * Checks location and renderes a piece if necessary
+				 */
 				switch (this.grid.getLocation(posX, posY)) {
 					
 				case 1:
