@@ -158,7 +158,7 @@ public class GomokuGameState extends Observable implements Observer{
 	/**
 	 * The player receives a move from the other player
 	 * 
-	 * @param x The x coordinate of the move
+	 * @param x The x coordinate of the move.
 	 * @param y The y coordinate of the move
 	 */
 	public void receivedMove(int x, int y){
