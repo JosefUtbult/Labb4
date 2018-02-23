@@ -127,7 +127,30 @@ public class GomokuGUI implements Observer{
         	@Override
         	public void mouseClicked(MouseEvent e) {
         		if(e.getButton() == e.BUTTON1) {
-        			g.move(e.getX() / guiHolder.getGameGridPanel().getUnitSize(), e.getY() / guiHolder.getGameGridPanel().getUnitSize());
+        			
+        			double mousePointX = ((e.getX() - guiHolder.getGameGridPanel().getDelta().getX()) / guiHolder.getGameGridPanel().getUnitSize());
+        			double mousePointY = ((e.getY() - guiHolder.getGameGridPanel().getDelta().getY()) / guiHolder.getGameGridPanel().getUnitSize());
+        			
+        			//System.out.format("PosX: %f		PosY: %f\n", mousePointX, mousePointY);
+        			
+        			mousePointX = Math.floor(mousePointX);
+        			mousePointY = Math.floor(mousePointY);
+
+        			//mousePointX = mousePointX % 1 < 0.5 ? Math.floor(mousePointX) : Math.ceil(mousePointX);
+        			//mousePointY = mousePointY % 1 < 0.5 ? Math.floor(mousePointY) : Math.ceil(mousePointX);
+        			
+        			System.out.format("PosX: %f		PosY: %f\n", mousePointX, mousePointY);
+        			
+        			if(mousePointX >= 0 &&
+        			   mousePointX < guiHolder.getGameGridPanel().getGameGrid().getSize() &&
+        			   mousePointY >= 0 &&
+        			   mousePointY < guiHolder.getGameGridPanel().getGameGrid().getSize()) {
+        				
+        				g.move((int)mousePointX, (int)mousePointY);
+        			}
+        			else {
+        				System.out.format("Could not move to tile %d, %d\n", (int)mousePointX, (int)mousePointY);
+        			}
         		}
         	
         	}
