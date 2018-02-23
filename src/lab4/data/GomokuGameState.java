@@ -103,13 +103,16 @@ public class GomokuGameState extends Observable implements Observer{
 		}
 		else if(currentState == FINISHED) {
 			
-			message = "Game is finished";
+			//message = "Game is finished";
 		}
 		else if(currentState == OTHER_TURN) {
 			message = "It is not your turn";
 		}
-		else {
+		else if(currentState == NOT_STARTED){
 			message = "Game is not started";
+		}
+		else {
+			message = "WTF? This should not be happening";
 		}
 
 	}
