@@ -130,7 +130,7 @@ public class GomokuGameState extends Observable implements Observer{
 	public void newGame(){
 		gameGrid.clearGrid();
 		message = "A new game has been started by you";
-		currentState = OTHER_TURN;
+		currentState = MY_TURN;
 		client.sendNewGameMessage();
 		setChanged();
 		notifyObservers();		
@@ -143,7 +143,7 @@ public class GomokuGameState extends Observable implements Observer{
 	public void receivedNewGame(){
 		gameGrid.clearGrid();
 		message = "A new game has been started by the other player";
-		currentState = MY_TURN;
+		currentState = OTHER_TURN;
 		setChanged();
 		notifyObservers();
 	}
