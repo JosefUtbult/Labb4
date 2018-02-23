@@ -69,7 +69,9 @@ public class GomokuGameState extends Observable implements Observer{
 	 * @param y the y coordinate
 	 */
 	public void move(int x, int y){
-		if(currentState == MY_TURN ) { //Checks if its "my" turn
+		
+		System.out.format("currentState: %d\n", currentState);
+		if(this.currentState == MY_TURN ) { //Checks if its "my" turn
 			
 			System.out.println("Moved");
 			
@@ -84,10 +86,12 @@ public class GomokuGameState extends Observable implements Observer{
 				
 				if(!this.checkWinnerStatus()) {
 					this.message = "You made a move";
+					
+					client.sendMoveMessage(x, y);	
+					currentState = OTHER_TURN;
 				}
 				
-				client.sendMoveMessage(x, y);	
-				currentState = OTHER_TURN;
+				
 					
 			}
 			else {
@@ -95,15 +99,10 @@ public class GomokuGameState extends Observable implements Observer{
 				
 			}
 			
-			gameGrid.getGamePanel().repaint();
-			this.setChanged();
-			this.notifyObservers();
-			gameGrid.getGamePanel().repaint();
-			
 		}
 		else if(currentState == FINISHED) {
 			
-			//message = "Game is finished";
+			message = "The game is over. Accept it";
 		}
 		else if(currentState == OTHER_TURN) {
 			message = "It is not your turn";
@@ -115,6 +114,12 @@ public class GomokuGameState extends Observable implements Observer{
 			message = "WTF? This should not be happening";
 		}
 
+		System.out.format("currentState: %d\n", currentState);
+		
+		gameGrid.getGamePanel().repaint();
+		this.setChanged();
+		this.notifyObservers();
+		
 	}
 	
 	/**
@@ -179,25 +184,26 @@ public class GomokuGameState extends Observable implements Observer{
 		gameGrid.move(x, y, gameGrid.OTHER);
 		
 		if(!this.checkWinnerStatus()) {
-			this.message = "The other player moved.";
+			this.message = "The other player made a move.";
+			this.currentState = this.MY_TURN;
 		}
 		
 		gameGrid.getGamePanel().repaint();
 		this.setChanged();
 		this.notifyObservers();
 		
-		this.currentState = this.MY_TURN;
+		
 	}
 	
 	private boolean checkWinnerStatus() {
 		if(gameGrid.isWinner(GameGrid.OTHER)) {
 			message = "Other player has won, u sukk";
-			currentState = FINISHED;
+			this.currentState = FINISHED;
 			return true;
 		}
 		else if(gameGrid.isWinner(GameGrid.ME)) {
-			message = "You won and u sukk";
-			currentState = FINISHED;
+			this.message = "You won and u sukk";
+			this.currentState = FINISHED;
 			return true;
 			
 		}
