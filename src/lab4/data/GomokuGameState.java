@@ -102,6 +102,9 @@ public class GomokuGameState extends Observable implements Observer{
 				notifyObservers();
 				
 			}
+			
+			gameGrid.getGamePanel().repaint();
+			
 		}
 		else if(currentState == FINISHED) {
 			
