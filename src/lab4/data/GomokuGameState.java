@@ -33,6 +33,7 @@ public class GomokuGameState extends Observable implements Observer{
 	 * The constructor
 	 * 
 	 * @param gc The client used to communicate with the other player
+	 * 
 	 */
 	public GomokuGameState(GomokuClient gc, int port){
 		this.message = "Begining at port " + String.valueOf(port);
@@ -112,7 +113,7 @@ public class GomokuGameState extends Observable implements Observer{
 		else if(currentState == NOT_STARTED){
 			message = "Game is not started";
 		}
-		else {
+		else { //Incase something unexpected happens
 			message = "WTF? This should not be happening";
 		}
 
@@ -162,7 +163,7 @@ public class GomokuGameState extends Observable implements Observer{
 	
 	
 	/**
-	 * The player disconnects from the client
+	 * The player disconnects from the client, notifies the client and observers
 	 */
 	public void disconnect(){
 		gameGrid.clearGrid(); //Clearing the grid
@@ -196,6 +197,12 @@ public class GomokuGameState extends Observable implements Observer{
 		
 		
 	}
+	
+	/**
+	 * Checks if you or the other player won
+	 * @return true if any of the players won, else false
+	 * 
+	 */
 	
 	private boolean checkWinnerStatus() {
 		if(gameGrid.isWinner(GameGrid.OTHER)) {
@@ -232,6 +239,9 @@ public class GomokuGameState extends Observable implements Observer{
 		
 	}
 	
+	/**
+	 * @return the client
+	 */
 	
 	public GomokuClient getClient() {
 		return this.client;
