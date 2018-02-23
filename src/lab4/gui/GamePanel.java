@@ -44,6 +44,7 @@ public class GamePanel extends JPanel implements Observer{
 	 */
 	public GamePanel(GameGrid grid){
 		
+		grid.setGamePanel(this);
 		/**
 		 * Makes a preferedUnitSize that is used instead of the UNIT_SIZE. It is sized after the current screen-size
 		 */
@@ -90,6 +91,8 @@ public class GamePanel extends JPanel implements Observer{
 	public void update(Observable arg0, Object arg1) {
 		this.repaint();
 	}
+	
+	
 	
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);

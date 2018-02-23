@@ -2,6 +2,8 @@ package lab4.data;
 
 import java.util.Observable;
 
+import lab4.gui.GamePanel;
+
 /**
  * Represents the 2-d game grid
  */
@@ -11,6 +13,9 @@ public class GameGrid extends Observable{
 	/*
 	 * A gridMatrix that holds the playing field. Holds ints that reprecents ME = 1, OTHER = 2 or NONE = 0;
 	 */
+	
+	private GamePanel panel;
+	
 	private int gridMatrix[][];
 	private int size;
 	public static int NONE = 0;
@@ -182,7 +187,13 @@ public class GameGrid extends Observable{
 	}
 	
 	
+	public void setGamePanel(GamePanel panel) {
+		this.panel = panel;
+	}
 	
+	public GamePanel getGamePanel() {
+		return this.panel;
+	}
 	
 	
 	
