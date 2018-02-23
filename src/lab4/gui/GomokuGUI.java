@@ -28,6 +28,8 @@ import lab4.data.GomokuGameState;
 
 public class GomokuGUI implements Observer{
 
+	private GamePanel gameGridPanel;
+	private GomokuGUI guiHolder;
 	private GomokuClient client;
 	private GomokuGameState gamestate;
 	private JLabel messageLabel;
@@ -51,6 +53,8 @@ public class GomokuGUI implements Observer{
 		client.addObserver(this);
 		gamestate.addObserver(this);
 		
+		guiHolder = this;
+		
 		/**
 		 * Creating a Frame (Window)
 		 */
@@ -60,7 +64,7 @@ public class GomokuGUI implements Observer{
 		/**
 		 * Creating a gameGridPanel (the view kind of
 		 */
-		GamePanel gameGridPanel = new GamePanel(g.getGameGrid());
+		gameGridPanel = new GamePanel(g.getGameGrid());
 		SpringLayout layout = new SpringLayout();
 
 		/**
@@ -118,6 +122,17 @@ public class GomokuGUI implements Observer{
         newGameButton.setEnabled(false);
         disconnectButton.setEnabled(false);
         
+        gameGridPanel.addMouseListener(new MouseAdapter() {
+        	
+        	@Override
+        	public void mouseClicked(MouseEvent e) {
+        		if(e.getButton() == e.BUTTON1) {
+        			g.move(e.getX() / guiHolder.getGameGridPanel().getUnitSize(), e.getY() / guiHolder.getGameGridPanel().getUnitSize());
+        		}
+        	
+        	}
+        });
+        
         connectButton.addActionListener(new ActionListener() {
 
         	ConnectionWindow connectionWindow;
@@ -173,6 +188,10 @@ public class GomokuGUI implements Observer{
 			messageLabel.setText(gamestate.getMessageString());
 		}
 		
+	}
+	
+	protected GamePanel getGameGridPanel() {
+		return this.gameGridPanel;
 	}
 	
 	

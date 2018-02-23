@@ -68,7 +68,7 @@ public class GomokuGameState extends Observable implements Observer{
 	 * @param y the y coordinate
 	 */
 	public void move(int x, int y){
-		if(currentState == MY_TURN) { //Checks if its "my" turn
+		if(currentState == MY_TURN ) { //Checks if its "my" turn
 			if (gameGrid.move(x, y, GameGrid.ME)) { // Checks if its a valid move, if it is:
 				receivedMove(x, y);					// Other player gets notified its his move, or that he lost
 				client.sendMoveMessage(x, y);		// Notifies the client
