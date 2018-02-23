@@ -34,13 +34,13 @@ public class GomokuGameState extends Observable implements Observer{
 	 * 
 	 * @param gc The client used to communicate with the other player
 	 */
-	public GomokuGameState(GomokuClient gc, boolean humanize){
-		this.message = "This is how to string.";
+	public GomokuGameState(GomokuClient gc, int port){
+		this.message = "Begining at port " + String.valueOf(port);
 		client = gc;
 		client.addObserver(this);
 		gc.setGameState(this);
 		currentState = NOT_STARTED;
-		gameGrid = new GameGrid(DEFAULT_SIZE, humanize);
+		gameGrid = new GameGrid(DEFAULT_SIZE);
 	}
 	
 
@@ -232,4 +232,8 @@ public class GomokuGameState extends Observable implements Observer{
 		
 	}
 	
+	
+	public GomokuClient getClient() {
+		return this.client;
+	}
 }
