@@ -11,8 +11,11 @@ public class GomokuMain {
 	public static void main(String[] args) {
 
 		System.out.println("Begin");
-		GomokuClient client = new GomokuClient(8005);
+		GomokuClient client = null;
+		int port = 8000 + (int) (Math.random() * 100);
+		client = new GomokuClient(port);
 		
+		System.out.format("Starting at port %d\n", port);
 		/*
 		 * Humanize is a flag that changes the appearance of the player-bricks
 		 */

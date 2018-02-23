@@ -187,6 +187,10 @@ public class GamePanel extends JPanel implements Observer{
 		return this.delta;
 	}
 	
+	public GameGrid getGameGrid() {
+		return this.grid;
+	}
+	
 	
 }
 
