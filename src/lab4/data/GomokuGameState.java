@@ -72,10 +72,16 @@ public class GomokuGameState extends Observable implements Observer{
 			
 			System.out.println("Moved");
 			
-			if (gameGrid.move(x, y, GameGrid.ME)) { // Checks if its a valid move, if it is:
-				receivedMove(x, y);					// Other player gets notified its his move, or that he lost
-				client.sendMoveMessage(x, y);		// Notifies the client
-				message = "You made a move";		// Tells you that the move was valid
+			/*
+			 * Checks if its a valid move, if it is: 
+			 * Other player gets notified its his move, or that he lost
+			 * Notifies the client
+			 * Tells you that the move was valid
+			 */
+			if (gameGrid.move(x, y, GameGrid.ME)) { 
+				receivedMove(x, y);					
+				client.sendMoveMessage(x, y);		
+				message = "You made a move";		
 				
 				if(gameGrid.isWinner(GameGrid.ME)) { 
 					message = "You won maddafakka"; //If 
@@ -169,15 +175,23 @@ public class GomokuGameState extends Observable implements Observer{
 		if(gameGrid.isWinner(GameGrid.OTHER)) {
 			message = "Other player has won, u sukk";
 			currentState = FINISHED;
-			setChanged();
-			notifyObservers();
+			
+		}
+		else if(gameGrid.isWinner(GameGrid.ME)) {
+			message = "You won and u sukk";
+			currentState = FINISHED;
+			
 		}
 		else {
-			message = "It is your turn";
+			/*message = "It is your turn";
 			currentState = MY_TURN;
 			setChanged();
 			notifyObservers();
+			*/
 		}
+		
+		this.setChanged();
+		this.notifyObservers();
 	}
 	
 	public void update(Observable o, Object arg) {
