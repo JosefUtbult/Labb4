@@ -70,7 +70,7 @@ public class GomokuGUI implements Observer{
 		/**
 		 * Some buttons and a label is created and added to the gameGridPanel. 
 		 */
-		messageLabel = new JLabel("This is how to text.");
+		messageLabel = new JLabel(g.getMessageString());
 		
 		connectButton = new JButton("Connect");
 		newGameButton = new JButton("New Game");
