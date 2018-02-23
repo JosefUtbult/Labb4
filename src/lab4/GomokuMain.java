@@ -18,9 +18,10 @@ public class GomokuMain {
 		 */
 		GomokuGameState gameState = new GomokuGameState(client, args.length > 0 && args[0].equals("-humanize"));
 		
-		gameState.getGameGrid().move(1, 3, 1);
+		/*gameState.getGameGrid().move(1, 3, 1);
 		gameState.getGameGrid().move(3, 3, 2);
 		gameState.getGameGrid().move(10, 5, 1);
+		*/
 		
 		
 		GomokuGUI gui = new GomokuGUI(gameState, client);
