@@ -5,6 +5,8 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.Observable;
@@ -115,6 +117,18 @@ public class GomokuGUI implements Observer{
         connectButton.setEnabled(true);
         newGameButton.setEnabled(false);
         disconnectButton.setEnabled(false);
+        
+        connectButton.addActionListener(new ActionListener() {
+
+        	ConnectionWindow connectionWindow;
+        	
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				connectionWindow = new ConnectionWindow(c);
+				
+			}
+        	
+        });
 		
 	}
 	
