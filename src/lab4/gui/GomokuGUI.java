@@ -129,6 +129,26 @@ public class GomokuGUI implements Observer{
 			}
         	
         });
+        
+        newGameButton.addActionListener(new ActionListener() {
+
+        	
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				g.newGame();
+			}
+        	
+        });
+        
+        disconnectButton.addActionListener(new ActionListener() {
+
+        	
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				g.disconnect();
+			}
+        	
+        });
 		
 	}
 	
