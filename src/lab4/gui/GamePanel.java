@@ -119,46 +119,24 @@ public class GamePanel extends JPanel implements Observer{
 					
 				case 1:
 					
-					if(grid.getHumanize() && this.player1 != null) {
-						g.drawImage(this.player1, 
-									(int)(posX * this.getUnitSize() + delta.getX() + ((this.getUnitSize() / 2) - (this.playerSize / 2))), 
-									(int)(posY * this.getUnitSize() + delta.getY() + ((this.getUnitSize() / 2) - (this.playerSize / 2))), 
-									(int)this.playerSize, 
-									(int)this.playerSize, 
-									jLayeredPane);
-						
-					}
-					else {
-						g.setColor(Color.DARK_GRAY);
-						g.fillArc((int)(posX * this.getUnitSize() + delta.getX() + ((this.getUnitSize() / 2) - (this.playerSize / 2))), 
-								  (int)(posY * this.getUnitSize() + delta.getY() + ((this.getUnitSize() / 2) - (this.playerSize / 2))), 
-								  (int)this.playerSize, 
-								  (int)this.playerSize, 
-								  0,
-								  360);
-					}
+					g.drawImage(this.player1, 
+								(int)(posX * this.getUnitSize() + delta.getX() + ((this.getUnitSize() / 2) - (this.playerSize / 2))), 
+								(int)(posY * this.getUnitSize() + delta.getY() + ((this.getUnitSize() / 2) - (this.playerSize / 2))), 
+								(int)this.playerSize, 
+								(int)this.playerSize, 
+								jLayeredPane);
+					
 					
 					break;
 				case 2:
 					
-					if(grid.getHumanize() && this.player2 != null) {
-						g.drawImage(this.player2, 
-									(int)(posX * this.getUnitSize() + delta.getX() + ((this.getUnitSize() / 2) - (this.playerSize / 2))), 
-									(int)(posY * this.getUnitSize() + delta.getY() + ((this.getUnitSize() / 2) - (this.playerSize / 2))), 
-									(int)this.playerSize, 
-									(int)this.playerSize, 
-									jLayeredPane);
-						
-					}
-					else {
-						g.setColor(Color.GRAY);
-						g.fillArc((int)(posX * this.getUnitSize() + delta.getX() + ((this.getUnitSize() / 2) - (this.playerSize / 2))), 
-								  (int)(posY * this.getUnitSize() + delta.getY() + ((this.getUnitSize() / 2) - (this.playerSize / 2))), 
-								  (int)this.playerSize, 
-								  (int)this.playerSize, 
-								  0,
-								  360);
-					}
+					g.drawImage(this.player2, 
+								(int)(posX * this.getUnitSize() + delta.getX() + ((this.getUnitSize() / 2) - (this.playerSize / 2))), 
+								(int)(posY * this.getUnitSize() + delta.getY() + ((this.getUnitSize() / 2) - (this.playerSize / 2))), 
+								(int)this.playerSize, 
+								(int)this.playerSize, 
+								jLayeredPane);
+					
 					
 					break;
 				case 0:
