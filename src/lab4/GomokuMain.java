@@ -11,7 +11,7 @@ public class GomokuMain {
 	public static void main(String[] args) {
 
 		System.out.println("Begin");
-		GomokuClient client = new GomokuClient(8000);
+		GomokuClient client = new GomokuClient(8005);
 		
 		/*
 		 * Humanize is a flag that changes the appearance of the player-bricks
