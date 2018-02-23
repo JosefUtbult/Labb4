@@ -1,5 +1,9 @@
 package lab4;
 
+/**
+ * @author Josef Utbult & Oscar Rosberg
+ */
+
 import java.net.BindException;
 
 import lab4.client.*;
