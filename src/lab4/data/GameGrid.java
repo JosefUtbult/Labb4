@@ -180,10 +180,17 @@ public class GameGrid extends Observable{
 	}
 
 	
+	/**
+	 * Sets the current gamePanel. 
+	 */
 	public void setGamePanel(GamePanel panel) {
 		this.panel = panel;
 	}
 	
+	/**
+	 * 
+	 * @return The gamePanel
+	 */
 	public GamePanel getGamePanel() {
 		return this.panel;
 	}

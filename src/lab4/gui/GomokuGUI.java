@@ -42,6 +42,7 @@ public class GomokuGUI implements Observer{
 	 * 
 	 * @param g   The game state that the GUI will visualize
 	 * @param c   The client that is responsible for the communication
+	 * 
 	 */
 	public GomokuGUI(GomokuGameState g, GomokuClient c){
 		
@@ -122,23 +123,34 @@ public class GomokuGUI implements Observer{
         newGameButton.setEnabled(false);
         disconnectButton.setEnabled(false);
         
+        /*
+         * Creating an anonymous MouseAAdapter, that reacts to positions on the grid
+         */
         gameGridPanel.addMouseListener(new MouseAdapter() {
         	
+        	/*
+        	 *Overides the mouseClicked function, to calculate a tile-position from the events position.
+        	 */
         	@Override
         	public void mouseClicked(MouseEvent e) {
-        		if(e.getButton() == e.BUTTON1) {
+        		if(e.getButton() == e.BUTTON1) { //The left mouse-button
         			
+        			/*
+        			 * Takes the position of the e event, which is relative to the left corner of the window. 
+        			 * Subtracts the delta value from the current GameGrid to get the position relative to the left corner of the grid.
+        			 * Then divides it with the number of tiles in the grid to get the current grid which it is in.
+        			 */
         			double mousePointX = ((e.getX() - guiHolder.getGameGridPanel().getDelta().getX()) / guiHolder.getGameGridPanel().getUnitSize());
         			double mousePointY = ((e.getY() - guiHolder.getGameGridPanel().getDelta().getY()) / guiHolder.getGameGridPanel().getUnitSize());
         			
-        			//System.out.format("PosX: %f		PosY: %f\n", mousePointX, mousePointY);
-        			
+        			/*
+        			 * Floors the position to get the upper left corner of the current tile, 
+        			 * makes sure that the value is within the limits,
+        			 * and then casts it to an Integer and calls move from the gameState
+        			 */
         			mousePointX = Math.floor(mousePointX);
         			mousePointY = Math.floor(mousePointY);
 
-        			//mousePointX = mousePointX % 1 < 0.5 ? Math.floor(mousePointX) : Math.ceil(mousePointX);
-        			//mousePointY = mousePointY % 1 < 0.5 ? Math.floor(mousePointY) : Math.ceil(mousePointX);
-        			
         			System.out.format("PosX: %f		PosY: %f\n", mousePointX, mousePointY);
         			
         			if(mousePointX >= 0 &&
@@ -156,6 +168,9 @@ public class GomokuGUI implements Observer{
         	}
         });
         
+        /*
+         * Adds anonymous actionListners to the buttons, that calls different methods when the button is activated.
+         */
         connectButton.addActionListener(new ActionListener() {
 
         	ConnectionWindow connectionWindow;
@@ -190,7 +205,9 @@ public class GomokuGUI implements Observer{
 		
 	}
 	
-	
+	/**
+	 * Is called when its Observable (client) notifies it. Enables and disables the buttons accordingly.
+	 */
 	public void update(Observable arg0, Object arg1) {
 		
 		// Update the buttons if the connection status has changed

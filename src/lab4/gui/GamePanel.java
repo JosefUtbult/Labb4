@@ -38,7 +38,9 @@ public class GamePanel extends JPanel implements Observer{
 	
 	
 	/**
-	 * The constructor
+	 * Stores the GameGrid, stores a screenSize that is generated from the width of the screen the
+	 * GUI is rendered on, stores some other sizes derived from the screenSize, and tries to read the players
+	 * tile-images.
 	 * 
 	 * @param grid The grid that is to be displayed
 	 */
@@ -87,13 +89,16 @@ public class GamePanel extends JPanel implements Observer{
 		
 		return new int[] {0};
 	}
-	
+	/**
+	 * Runs as the Observable (GameGrid) notifies it. Repaints the screen
+	 */
 	public void update(Observable arg0, Object arg1) {
 		this.repaint();
 	}
 	
-	
-	
+	/**
+	 * Overrides JPanels paintComponent. Paints the GameGrid.
+	 */
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
 		
@@ -113,7 +118,7 @@ public class GamePanel extends JPanel implements Observer{
 				g.drawRect((int) (posX * this.getUnitSize() + delta.getX()), (int) (posY * this.getUnitSize() + delta.getY()), this.getUnitSize(), this.getUnitSize());
 				
 				/*
-				 * Checks location and renderes a piece if necessary
+				 * Checks location and renders a piece if necessary
 				 */
 				switch (this.grid.getLocation(posX, posY)) {
 					
@@ -152,22 +157,29 @@ public class GamePanel extends JPanel implements Observer{
 		
 	}
 	
+	/**
+	 * Returns the preferedUnitSize, a size derived from screenSize.
+	 * @return preferedUnitSize
+	 */
 	public int getUnitSize() {
 		
 		return preferedUnitSize;
 		
 	}
 	
-	/*
-	@Override
-	public void redraw(Graphics g) {
-		
-	} */
-	
+	/**
+	 * Returns the delta value, an offset for the zero point of the grid. Its purpose is to center the
+	 * grid in whatever size the current window is in.
+	 * @return the zero point offset
+	 */
 	public Point getDelta() {
 		return this.delta;
 	}
 	
+	/**
+	 * Returns the gameGrid.
+	 * @return GameGrid
+	 */
 	public GameGrid getGameGrid() {
 		return this.grid;
 	}

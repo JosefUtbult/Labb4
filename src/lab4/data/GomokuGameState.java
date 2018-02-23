@@ -30,9 +30,10 @@ public class GomokuGameState extends Observable implements Observer{
 	private String message;
 	
 	/**
-	 * The constructor
-	 * 
+	 * The constructor takes in the GomokuClient and stores it. It also takes the port
+	 * number and prints it as a message on the screen.
 	 * @param gc The client used to communicate with the other player
+	 * @param port The port of the client
 	 */
 	public GomokuGameState(GomokuClient gc, int port){
 		this.message = "Begining at port " + String.valueOf(port);
@@ -213,7 +214,10 @@ public class GomokuGameState extends Observable implements Observer{
 			return false;
 		}
 	}
-	
+	/**
+	 * Runs as an Observable (GomokuClient) notifies it. Checks the connection status
+	 * from the GomokuClient, ands sets the currentState accordingly.
+	 */
 	public void update(Observable o, Object arg) {
 		
 		switch(client.getConnectionStatus()){
@@ -232,7 +236,10 @@ public class GomokuGameState extends Observable implements Observer{
 		
 	}
 	
-	
+	/**
+	 * Returns the objects client
+	 * @return The objects client
+	 */
 	public GomokuClient getClient() {
 		return this.client;
 	}
