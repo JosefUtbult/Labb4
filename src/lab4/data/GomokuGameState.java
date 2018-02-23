@@ -177,9 +177,11 @@ public class GomokuGameState extends Observable implements Observer{
 		
 		gameGrid.move(x, y, gameGrid.OTHER);
 		
-		gameGrid.getGamePanel().revalidate();
+		gameGrid.getGamePanel().repaint();
 		this.setChanged();
 		this.notifyObservers();
+		
+		this.currentState = this.MY_TURN;
 	}
 	
 	private void checkWinnerStatus() {
