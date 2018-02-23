@@ -31,6 +31,7 @@ public class GamePanel extends JPanel implements Observer{
 	private int screenSize;
 	private int preferedUnitSize;
 	private GameGrid grid;
+	private Point delta;
 	
 	private BufferedImage player1;
 	private BufferedImage player2;
@@ -97,7 +98,7 @@ public class GamePanel extends JPanel implements Observer{
 		 * Makes a delta point, that is relative to the current screenSize. This acts like a zero position for the grid
 		 */
 		
-		Point delta = new Point(this.getWidth() / 2 - (grid.getSize() * this.getUnitSize()) / 2, (this.getHeight() / 2 - (grid.getSize() * this.getUnitSize()) / 2));
+		delta = new Point(this.getWidth() / 2 - (grid.getSize() * this.getUnitSize()) / 2, (this.getHeight() / 2 - (grid.getSize() * this.getUnitSize()) / 2));
 		JLayeredPane jLayeredPane = new JLayeredPane();
 		/*
 		 * Draws the grid
@@ -181,6 +182,10 @@ public class GamePanel extends JPanel implements Observer{
 	public void redraw(Graphics g) {
 		
 	} */
+	
+	public Point getDelta() {
+		return this.delta;
+	}
 	
 	
 }
