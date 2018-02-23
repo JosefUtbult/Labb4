@@ -79,7 +79,7 @@ public class GomokuGameState extends Observable implements Observer{
 			 * Tells you that the move was valid
 			 */
 			if (gameGrid.move(x, y, GameGrid.ME)) { 
-				receivedMove(x, y);					
+				//receivedMove(x, y);					
 				client.sendMoveMessage(x, y);		
 				message = "You made a move";		
 				
@@ -172,6 +172,17 @@ public class GomokuGameState extends Observable implements Observer{
 	 * @param y The y coordinate of the move
 	 */
 	public void receivedMove(int x, int y){
+		
+		System.out.format("Received a move: X: %d		Y: %d\n", x, y);
+		
+		gameGrid.move(x, y, gameGrid.OTHER);
+		
+		gameGrid.getGamePanel().revalidate();
+		this.setChanged();
+		this.notifyObservers();
+	}
+	
+	private void checkWinnerStatus() {
 		if(gameGrid.isWinner(GameGrid.OTHER)) {
 			message = "Other player has won, u sukk";
 			currentState = FINISHED;
@@ -182,16 +193,6 @@ public class GomokuGameState extends Observable implements Observer{
 			currentState = FINISHED;
 			
 		}
-		else {
-			/*message = "It is your turn";
-			currentState = MY_TURN;
-			setChanged();
-			notifyObservers();
-			*/
-		}
-		
-		this.setChanged();
-		this.notifyObservers();
 	}
 	
 	public void update(Observable o, Object arg) {
