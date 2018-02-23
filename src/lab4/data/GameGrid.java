@@ -51,7 +51,7 @@ public class GameGrid extends Observable{
 	 * @return the value of the specified location
 	 */
 	public int getLocation(int x, int y){
-		return gridMatrix[y][x];
+		return gridMatrix[x][y];
 	}
 	
 	/**
@@ -89,7 +89,7 @@ public class GameGrid extends Observable{
 	public void clearGrid(){
 		for(int row = 0; row < this.size; row++ ) {
 			for(int collumn = 0; collumn < this.size; collumn++ ) {
-				gridMatrix[row][collumn] = 0;
+				gridMatrix[collumn][row] = 0;
 			}
 		}
 		
