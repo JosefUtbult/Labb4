@@ -54,6 +54,9 @@ public class GomokuGUI implements Observer{
 		client.addObserver(this);
 		gamestate.addObserver(this);
 		
+		/*
+		 * Saves this to a variable, so that nestled classes can reach it.
+		 */
 		guiHolder = this;
 		
 		/**

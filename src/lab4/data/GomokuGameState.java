@@ -76,8 +76,6 @@ public class GomokuGameState extends Observable implements Observer {
 		System.out.format("currentState: %d\n", currentState);
 		if (this.currentState == MY_TURN) { // Checks if its "my" turn
 
-			System.out.println("Moved");
-
 			/*
 			 * Checks if its a valid move, if it is: Other player gets notified its his
 			 * move, or that he lost Notifies the client Tells you that the move was valid
