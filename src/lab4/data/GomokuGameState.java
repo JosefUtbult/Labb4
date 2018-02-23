@@ -87,9 +87,11 @@ public class GomokuGameState extends Observable implements Observer{
 				if(!this.checkWinnerStatus()) {
 					this.message = "You made a move";
 					
-					client.sendMoveMessage(x, y);	
+						
 					currentState = OTHER_TURN;
 				}
+				
+				client.sendMoveMessage(x, y);
 				
 				
 					
