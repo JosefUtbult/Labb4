@@ -146,7 +146,7 @@ public class GameGrid extends Observable{
 					if(loopThroughSeries(player, column, row, 1, 0) ||
 					   loopThroughSeries(player, column, row, 0, 1) ||
 					   loopThroughSeries(player, column, row, 1, 1) ||
-					   loopThroughSeries(player, column, row, -1, -1) 
+					   loopThroughSeries(player, column, row, -1, 1) 
 					   ) {
 						
 						return true;
@@ -168,11 +168,11 @@ public class GameGrid extends Observable{
 		for(int i = 0; i < INROW; i++ ) {
 			
 			//Makes sure the getLocation won't get any IndexOutOfBounds-error, and checks the tile.
-			if(x + (x >= 0 ? 1 : -1) *  Math.abs(deltaX * i) < 0 || 
-			   y + (y >= 0 ? 1 : -1) *  Math.abs(deltaY * i) < 0 || 
-			   x + (x >= 0 ? 1 : -1) *  Math.abs(deltaX * i) >= this.size ||
-		       y + (y >= 0 ? 1 : -1) *  Math.abs(deltaY * i) * i >= this.size ||
-			   this.getLocation(x + (x >= 0 ? 1 : -1) *  Math.abs(deltaX * i), y + (y >= 0 ? 1 : -1) *  Math.abs(deltaY * i)) != player) {
+			if(x + (deltaX >= 0 ? 1 : -1) *  (Math.abs(deltaX) * i) < 0 || 
+			   y + (deltaY >= 0 ? 1 : -1) *  (Math.abs(deltaY) * i) < 0 || 
+			   x + (deltaX >= 0 ? 1 : -1) *  (Math.abs(deltaX) * i) >= this.size ||
+		       y + (deltaY >= 0 ? 1 : -1) *  (Math.abs(deltaY) * i) >= this.size ||
+			   this.getLocation(x + (deltaX >= 0 ? 1 : -1) *  (Math.abs(deltaX) * i), y + (deltaY >= 0 ? 1 : -1) *  (Math.abs(deltaY) * i)) != player) {
 				
 				return false;
 			}
