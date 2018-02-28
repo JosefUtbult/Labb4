@@ -74,7 +74,7 @@ public class GameGrid extends Observable{
 		/*
 		 * Safeguard to not place random shit
 		 */
-		if((player == 1 || player == 2) && this.getLocation(x,  y) == 0) {
+		if((player == this.ME || player == this.OTHER) && this.getLocation(x,  y) == this.NONE) {
 			gridMatrix[x][y] = player;
 			return true;
 		}

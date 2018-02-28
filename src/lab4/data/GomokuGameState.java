@@ -194,6 +194,7 @@ public class GomokuGameState extends Observable implements Observer {
 	 */
 
 	private boolean checkWinnerStatus() {
+		
 		if (gameGrid.isWinner(GameGrid.OTHER)) {
 			message = "Other player has won, u sukk";
 			this.currentState = FINISHED;
