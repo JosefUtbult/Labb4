@@ -18,10 +18,10 @@ public class GameGrid extends Observable{
 	
 	private int gridMatrix[][];
 	private int size;
-	public static int NONE = 0;
-	public static int ME = 1;
-	public static int OTHER = 2;
-	private static int INROW = 5;
+	public final static int NONE = 0;
+	public final static int ME = 1;
+	public final static int OTHER = 2;
+	private final static int INROW = 3;
 	
 	/**
 	 * Constructor
