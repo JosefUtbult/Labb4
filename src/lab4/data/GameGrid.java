@@ -159,19 +159,20 @@ public class GameGrid extends Observable{
 	}
 	
 	/*
-	 * Loopes through 5 tiles, starting at position x, y and increments every step by deltaX, deltaY.
+	 * Loops through 5 tiles, starting at position x, y and increments every step by deltaX, deltaY.
 	 * If every tile contains the players pieces, it returns true
 	 */
 	private boolean loopThroughSeries(int player, int x, int y, int deltaX, int deltaY) {
 		
+		
 		for(int i = 0; i < INROW; i++ ) {
 			
 			//Makes sure the getLocation won't get any IndexOutOfBounds-error, and checks the tile.
-			if(x + deltaX * i < 0 || 
-			   y + deltaY * i < 0 || 
-			   x + deltaX * i >= this.size ||
-			   y + deltaY * i >= this.size ||
-			   this.getLocation(x + deltaX * i, y + deltaY * i) != player) {
+			if(x + (x >= 0 ? 1 : -1) *  Math.abs(deltaX * i) < 0 || 
+			   y + (y >= 0 ? 1 : -1) *  Math.abs(deltaY * i) < 0 || 
+			   x + (x >= 0 ? 1 : -1) *  Math.abs(deltaX * i) >= this.size ||
+		       y + (y >= 0 ? 1 : -1) *  Math.abs(deltaY * i) * i >= this.size ||
+			   this.getLocation(x + (x >= 0 ? 1 : -1) *  Math.abs(deltaX * i), y + (y >= 0 ? 1 : -1) *  Math.abs(deltaY * i)) != player) {
 				
 				return false;
 			}
