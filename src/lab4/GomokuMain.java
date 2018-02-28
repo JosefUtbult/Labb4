@@ -14,9 +14,12 @@ public class GomokuMain {
 
 	public static void main(String[] args) {
 
-		int port = 8000 + (int) (Math.random() * 100);
+		int port[] = new int[] {}; //{8000 + (int) (Math.random() * 100), 9000};
 				
-		GomokuClient client = new GomokuClient(port);
-		new GomokuGUI(new GomokuGameState(client, port), client);
+		if(port.length < 1) {
+			port = new int[] {8000};
+		}
+		GomokuClient client = new GomokuClient(port[0]);
+		new GomokuGUI(new GomokuGameState(client, port[0]), client);
 	}
 }
